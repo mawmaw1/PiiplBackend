@@ -1,7 +1,7 @@
 var MongoClient = require('mongodb').MongoClient
 
 function getConnectionString(connection_string) {
-  connection_string = 'mongodb://<nulamo>:<nulamo1337>@ds021036.mlab.com:21036/nulamo'
+  connection_string = 'mongodb://nulamo:nulamo1337@ds021036.mlab.com:21036/nulamo'
   return connection_string;
 }
 var connection;
