@@ -27,6 +27,7 @@ router.get("/projects", function (req, res) {
 
 router.post("/projects", function (req, res) {
   var project = req.body;
+  console.log(project)
   var db = connection.get();
   db.collection("projects").insertOne(project, function (err, r) {
     if(err){
