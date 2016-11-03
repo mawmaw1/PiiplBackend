@@ -30,6 +30,7 @@ router.post("/projects", function (req, res) {
   console.log("TEST1")
   console.log(project)
   console.log("TEST2")
+  console.log(project.userName)
   var db = connection.get();
   db.collection("projects").insertOne(project, function (err, r) {
     if(err){
