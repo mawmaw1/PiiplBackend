@@ -27,10 +27,11 @@ router.get("/projects", function (req, res) {
 
 router.post("/projects", function (req, res) {
   var project = req.body;
-  console.log("TEST1")
-  console.log(project)
-  console.log("TEST2")
-  console.log(project.userName)
+
+  if(project.hasOwnProperty("userName")){
+    console.log("BALLS IN FACE")
+  }
+
   var db = connection.get();
   db.collection("projects").insertOne(project, function (err, r) {
     if(err){
