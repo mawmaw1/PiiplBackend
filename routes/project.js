@@ -21,7 +21,7 @@ router.get("/projects", function (req, res) {
       res.status(500);
       return res.json({code: 500, msg: "Could not fetch projects"})
     }
-    res.json(projects).stringify();
+    res.end(JSON.stringify(projects, null, '\t'));
   })
 })
 
