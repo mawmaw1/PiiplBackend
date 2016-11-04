@@ -24,7 +24,7 @@ router.get("/p_users", function (req, res) {
             res.status(500);
             return res.json({code: 500, msg: "Could not fetch users"})
         }
-        res.json(p_users);
+        res.json(p_users).stringify();
     })
 })
 
