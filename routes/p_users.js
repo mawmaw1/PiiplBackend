@@ -28,6 +28,19 @@ router.get("/p_users", function (req, res) {
     })
 })
 
+router.get("/p_users/:id", function (req, res) {
+    var db = connection.get();
+    var id = new ObjectId(req.params.id);
+    db.collection("p_users").findOne({_id:id}, function(err,result) {
+        if (err) {
+            res.status(500);
+            return res.json({code: 500, msg: "Could not get the provided user: " + err})
+        }
+        console.log("Result: " + result);
+        res.end(JSON.stringify(result, null, '\t'))
+    });
+})
+
 router.post("/p_users", function (req, res) {
     var p_user = req.body;
     var db = connection.get();
