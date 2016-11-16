@@ -28,6 +28,20 @@ router.get("/posts", function (req, res) {
     })
 })
 
+router.get("/posts/:id", function (req, res) {
+    var db = connection.get();
+    var id = new ObjectId(req.params.id);
+    db.collection("posts").findOne({_id:id}, function(err,result) {
+        if (err) {
+            res.status(500);
+            return res.json({code: 500, msg: "Could not get the provided post: " + err})
+        }
+        console.log("Result: " + result);
+        res.end(JSON.stringify(result, null, '\t'))
+    });
+})
+
+
 router.post("/posts", function (req, res) {
     var post = req.body;
     var db = connection.get();
