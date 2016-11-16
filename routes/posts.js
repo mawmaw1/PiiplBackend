@@ -55,7 +55,7 @@ router.put("/posts", function (req, res) {
             return res.json({code: 500, msg: "Could not update the provided post: "+err})
         }
         console.log("Result: "+result);
-        return res.json(result);
+        res.end(JSON.stringify(post, null, '\t'))
     });
 
 });
