@@ -28,6 +28,42 @@ router.get("/posts", function (req, res) {
     })
 })
 
+router.get("/posts/near/:long/:lat/:distance", function (req, res) {
+
+    var db = connection.get();
+
+
+    var data = {
+        "near": {
+            "lat": parseFloat(req.params.lat),
+            "long": parseFloat(req.params.long),
+            "distance": parseFloat(req.params.distance)
+        }
+
+    }
+    db.collection("posts").find({
+        location: {
+            $near: {
+                $geometry: {
+                    type: 'Point',
+                    coordinates: [data.near.long, data.near.lat]
+                },
+
+            $maxDistance: 10/111.12
+        }}
+    }).toArray(function (err, posts) {
+        if (err) {
+            res.status(500);
+            return res.json({code: 500, msg: err})
+
+        }
+        res.end(JSON.stringify(posts, null, '\t'))
+
+    })
+})
+
+
+
 router.get("/posts/:id", function (req, res) {
     var db = connection.get();
     var id = new ObjectId(req.params.id);
