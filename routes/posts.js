@@ -24,6 +24,7 @@ router.get("/posts", function (req, res) {
             res.status(500);
             return res.json({code: 500, msg: "Could not fetch posts"})
         }
+        res.setHeader('Content-Type', 'application/json');
         res.end(JSON.stringify(posts, null, '\t'))
     })
 })
